@@ -1,17 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, Button } from 'react-native';
+import React from 'react';
 
 // styled components
 import {Container} from "./styles/appStyles";
+// User-defined components
+import Home from './components/Home';
+
 
 export default function App() {
   return (
     <Container>
-      <Text>Welcome to React Native!!</Text>
-      <Button title="Alert" onPress={() => alert("Hi, Likano")} />
-      <StatusBar style="auto" />
+      <Home />
+      <StatusBar style="light" />
     </Container>
   );
 }
+
+
 
 
