@@ -1,17 +1,16 @@
 import React,{useState} from "react";
 
-
 // styled componenents
-import {ListView, TodoText, TodoDate, SwipedTodoText,HeaderButton,  colors, ListViewHidden} from "../styles/appStyles";
+import {ListView, TodoText, TodoDate, SwipedTodoText,HiddenButton,colors, ListViewHidden} from "../styles/appStyles";
 
-import SwipeListView from "react-native-swipe-list-view";
+import {SwipeListView} from "react-native-swipe-list-view";
 import {Entypo} from "@expo/vector-icons";
 
 // set todos properties as arguments  
 const ListItems = ({todos, setTodos}) => {
 
     // for styling current swiped todo row
-    const [swipeRow, setSwipeRow] = useState(null);
+    const [swipedRow, setSwipeRow] = useState(null);
 
     // handle delete todo
     const handleDeleteTodo = (rowMap, rowKey) => {
@@ -25,17 +24,16 @@ const ListItems = ({todos, setTodos}) => {
         setTodos(newTodos); 
     }
     return(
-        <SwipeListView>
-            date={todos}
+        <SwipeListView
+            data={todos}
             renderItem={(data) => {
-                //
                 const RowText = data.item.key == swipedRow ? SwipedTodoText : TodoText;
                 return(
                     <ListView 
                         underlayColor={colors.primary}
                         onPress={() => {
 
-                        }}
+                        }} 
                     >
                         <>
                             <RowText>{data.item.title}</RowText>
@@ -44,7 +42,6 @@ const ListItems = ({todos, setTodos}) => {
                     </ListView>
                 )
             }}
-
             renderHiddenItem={(data, rowMap) => {
                 return(    
                     <ListViewHidden>
@@ -56,6 +53,7 @@ const ListItems = ({todos, setTodos}) => {
                     </ListViewHidden>
                 )
             }}
+        
             leftOpenValue={80}
             previewRowKey={"1"}
             previewOpenValue={80}
@@ -73,8 +71,8 @@ const ListItems = ({todos, setTodos}) => {
             onRowClose={() => {
                 setSwipeRow(null);
             }}
-
-        </SwipeListView>
+    />
+        
     );
 }
 
